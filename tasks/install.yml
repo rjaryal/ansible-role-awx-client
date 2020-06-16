@@ -1,0 +1,41 @@
+---
+
+- name: awx > client > install > epel-release
+  yum:
+    name: epel-release
+    state: present
+    update_cache: true
+
+- name: awx > client > install > jq
+  yum:
+    name: jq
+    state: present
+
+- name: awx > client > install > pip info
+  shell: command -v pip >/devv/null 2>&1
+  failed_when: false
+  changed_when: false
+  register: pip_command_cmd
+
+- name: awx > client > install > pip
+  block:
+    - name: awx > client > install > download > pip installer
+      get_url:
+        url: https://bootstrap.pypa.io/get-pip.py
+        dest: ~/get-pip.py
+        force: no
+
+    - name: awx > client > install > pip
+      shell: python ~/get-pip.py
+
+    - name: awx > client > install > debug > pip version
+      shell: pip --version
+  when: pip_command_cmd.rc != 0
+
+- name: awx > client > install > ansible-tower-cli
+  pip:
+    name: ansible-tower-cli
+
+- name: awx > client > install > debug > tower-cli version
+  shell: tower-cli --version
+  changed_when: false

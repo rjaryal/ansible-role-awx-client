@@ -1,0 +1,17 @@
+---
+
+- name: awx > client > config > Pre-requisites
+  assert:
+    that:
+      - awx_tower_config['host'] is defined and awx_tower_config['host'] is not none
+      - awx_tower_config['oauth_token'] is defined and awx_tower_config['oauth_token'] is not none
+
+- name: awx > client > config > tower-cli
+  template:
+    src: tower_cli.cfg.j2
+    dest: ~/.tower_cli.cfg
+    mode: "0400"
+
+- name: awx > client > config > debug > tower-cli version
+  shell: tower-cli version
+  changed_when: false

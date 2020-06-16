@@ -1,0 +1,12 @@
+---
+
+#
+# Following attributes are required:
+#   awx_tower_config:                                OPTIONAL, default = ~
+#     host: <tower_host>                             REQUIRED
+#     oauth_token: <tower_host_access_oauth_token>   REQUIRED
+#
+# For additional attributes, check: https://tower-cli.readthedocs.io/en/latest/api_ref/conf.html
+#
+
+awx_tower_config: {}

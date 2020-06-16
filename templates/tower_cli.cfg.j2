@@ -1,0 +1,15 @@
+[general]
+host: {{ awx_tower_config['host'] }}
+insecure: {{ awx_tower_config['insecure'] | default('False', true) }}
+verify_ssl: {{ awx_tower_config['verify_ssl'] | default('False', true) }}
+oauth_token: {{ awx_tower_config['oauth_token'] }}
+
+# Defaults.
+certificate: {{ awx_tower_config['certificate'] | default('', true) }}
+username: {{ awx_tower_config['username'] | default('', true) }}
+password: {{ awx_tower_config['password'] | default('', true) }}
+use_token: {{ awx_tower_config['use_token'] | default('False', true) }}
+color: {{ awx_tower_config['color'] | default('True', true) }}
+format: {{ awx_tower_config['format'] | default('human', true) }}
+description_on: {{ awx_tower_config['description_on'] | default('False', true) }}
+verbose: {{ awx_tower_config['verbose'] | default('False', true) }}
